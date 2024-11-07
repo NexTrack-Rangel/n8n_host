@@ -3,10 +3,9 @@ kind: Service
 metadata:
   name: n8n-service
 spec:
-  type: NodePort  # Altere para NodePort
+  type: LoadBalancer
   ports:
     - port: 80
-      targetPort: 5678
-      nodePort: 30007  # Especifique uma porta entre 30000-32767
+      targetPort: 5678  # A porta do contêiner onde o n8n está escutando
   selector:
     app: n8n
