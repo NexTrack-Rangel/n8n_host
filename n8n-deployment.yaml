@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: n8n
+  name: n8n-deployment
 spec:
   replicas: 1
   selector:
@@ -13,14 +13,7 @@ spec:
         app: n8n
     spec:
       containers:
-        - name: n8n
-          image: n8nio/n8n:latest
-          ports:
-            - containerPort: 5678
-          volumeMounts:
-            - mountPath: /files  # Caminho onde o volume será montado dentro do contêiner
-              name: n8n-claim0
-      volumes:
-        - name: n8n-claim0
-          persistentVolumeClaim:
-            claimName: n8n-claim0
+      - name: n8n
+        image: n8nio/n8n
+        ports:
+        - containerPort: 5678
